@@ -1,29 +1,30 @@
-// PASTE THIS ENTIRE FILE AS: app/page.tsx
-// Delete everything in your current file and paste this
+'use client';
 
-function App() {
-  const PHONE = '+16892985282';
-  const PHONE_DISPLAY = '+1 689-298-5282';
-  const EMAIL = 'billserviceamerican@gmail.com';
-  const WA_LINK = `https://wa.me/${PHONE}?text=Hello!%20I%20am%20interested%20in%20your%20exclusive%20payment%20services.`;
-  const LOGO_URL = 'https://cdn.abacus.ai/images/f11c3fe6-53c1-406a-bda1-d436aa6093cc.png';
-  const HERO_BG = 'https://cdn.abacus.ai/images/d8091bb1-21a4-4318-90a3-79f28701c995.png';
-  const ABOUT_IMG = 'https://cdn.abacus.ai/images/0450aa1b-0a8f-49dc-9596-054004ea6a67.png';
-  const CTA_BG = 'https://cdn.abacus.ai/images/a9ff284b-f874-43e2-bc0f-645b1847ff6e.png';
-  const GALLERY_IMAGES = [
-    'https://cdn.abacus.ai/images/1ccac92e-6ade-4155-a545-5ee4ab0c641a.png',
-    'https://cdn.abacus.ai/images/1ed5b67e-4942-4233-9c9a-ef217ef3b6f2.png',
-    'https://cdn.abacus.ai/images/547ef55f-e836-42de-815a-c32cc4847fbe.png',
-    'https://cdn.abacus.ai/images/4a14e0f6-ae5b-4362-bc07-44da905b4426.png',
-  ];
+import { useState, useEffect } from 'react';
 
-  const [loading, setLoading] = React.useState(true);
-  const [fillLevel, setFillLevel] = React.useState(0);
-  const [scrolled, setScrolled] = React.useState(false);
-  const [scrollY, setScrollY] = React.useState(0);
-  const [activeGallery, setActiveGallery] = React.useState(0);
+const PHONE = '+16892985282';
+const PHONE_DISPLAY = '+1 689-298-5282';
+const EMAIL = 'billserviceamerican@gmail.com';
+const WA_LINK = `https://wa.me/${PHONE}?text=Hello!%20I%20am%20interested%20in%20your%20exclusive%20payment%20services.`;
+const LOGO_URL = 'https://cdn.abacus.ai/images/f11c3fe6-53c1-406a-bda1-d436aa6093cc.png';
+const HERO_BG = 'https://cdn.abacus.ai/images/d8091bb1-21a4-4318-90a3-79f28701c995.png';
+const ABOUT_IMG = 'https://cdn.abacus.ai/images/0450aa1b-0a8f-49dc-9596-054004ea6a67.png';
+const CTA_BG = 'https://cdn.abacus.ai/images/a9ff284b-f874-43e2-bc0f-645b1847ff6e.png';
+const GALLERY_IMAGES = [
+  'https://cdn.abacus.ai/images/1ccac92e-6ade-4155-a545-5ee4ab0c641a.png',
+  'https://cdn.abacus.ai/images/1ed5b67e-4942-4233-9c9a-ef217ef3b6f2.png',
+  'https://cdn.abacus.ai/images/547ef55f-e836-42de-815a-c32cc4847fbe.png',
+  'https://cdn.abacus.ai/images/4a14e0f6-ae5b-4362-bc07-44da905b4426.png',
+];
 
-  React.useEffect(() => {
+export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [fillLevel, setFillLevel] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [activeGallery, setActiveGallery] = useState(0);
+
+  useEffect(() => {
     let level = 0;
     const interval = setInterval(() => {
       level += 1.5;
@@ -36,7 +37,7 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
       setScrollY(window.scrollY);
@@ -46,7 +47,7 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setActiveGallery((prev) => (prev + 1) % GALLERY_IMAGES.length);
     }, 3500);
@@ -120,7 +121,7 @@ function App() {
   }
 
   return (
-    <div style={{
+    <main style={{
       fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
       background: 'radial-gradient(circle at top left, rgba(16,185,129,0.08), transparent 28%), radial-gradient(circle at top right, rgba(18,58,120,0.16), transparent 30%), linear-gradient(180deg,#040912 0%,#07111f 45%,#050a12 100%)',
       color: '#fff',
@@ -152,7 +153,7 @@ function App() {
                 </a>
               ))}
             </div>
-            <a href={WA_LINK} target="_blank" style={{
+            <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
               background: '#10b981', color: '#fff', padding: '12px 28px', borderRadius: '8px',
               fontWeight: '700', textDecoration: 'none', fontSize: '14px', boxShadow: '0 4px 15px rgba(16,185,129,0.3)'
             }}>GET STARTED</a>
@@ -169,7 +170,7 @@ function App() {
         <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', paddingTop: '80px' }}>
           <div style={{ maxWidth: '720px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-              <span style={{ width: '40px', height: '2px', background: '#10b981' }} />
+              <span style={{ width: '40px', height: '2px', background: '#10b981', display: 'inline-block' }} />
               <span style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '4px', color: '#10b981', textTransform: 'uppercase' }}>Trusted by 5,000+ Families Across the U.S.</span>
             </div>
             <h1 style={{ fontSize: 'clamp(40px,6vw,72px)', fontWeight: '900', lineHeight: '1.05', marginBottom: '28px', letterSpacing: '-2px' }}>
@@ -179,14 +180,14 @@ function App() {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-                Rent & Bills
+                Rent &amp; Bills
               </span>
             </h1>
             <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', marginBottom: '45px', maxWidth: '580px' }}>
               We negotiate and process your payments with exclusive rates. Fast, secure, and 100% bilingual support available 24/7 via WhatsApp.
             </p>
             <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <a href={WA_LINK} target="_blank" style={{
+              <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
                 background: '#10b981', color: '#fff', padding: '20px 45px', borderRadius: '12px',
                 fontSize: '18px', fontWeight: '800', textDecoration: 'none',
                 boxShadow: '0 10px 40px rgba(16,185,129,0.4)', transition: '0.3s',
@@ -225,7 +226,7 @@ function App() {
               The Most Trusted Way to <span style={{ color: '#10b981' }}>Settle Your Bills</span>
             </h2>
             <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.7)', marginBottom: '35px', lineHeight: '1.8' }}>
-              At Bills Solutions Center, we don't just pay bills — we maximize your budget. Our bilingual experts work directly with utility companies and landlords to ensure the best possible outcome for you.
+              At Bills Solutions Center, we don&apos;t just pay bills — we maximize your budget. Our bilingual experts work directly with utility companies and landlords to ensure the best possible outcome for you.
             </p>
             {[
               { icon: '⭐', title: 'Exclusive Partner Rates', desc: 'Access discounts and offers not available to the general public.' },
@@ -268,7 +269,7 @@ function App() {
               <div style={{ fontSize: '40px', marginBottom: '20px' }}>{s.icon}</div>
               <h4 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '12px' }}>{s.name}</h4>
               <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', marginBottom: '25px', lineHeight: '1.7' }}>{s.desc}</p>
-              <a href={WA_LINK} target="_blank" style={{ color: '#10b981', fontWeight: '700', textDecoration: 'none', fontSize: '14px' }}>CONSULT EXPERT →</a>
+              <a href={WA_LINK} target="_blank" rel="noreferrer" style={{ color: '#10b981', fontWeight: '700', textDecoration: 'none', fontSize: '14px' }}>CONSULT EXPERT →</a>
             </div>
           ))}
         </div>
@@ -304,7 +305,7 @@ function App() {
                   A Premium Experience Your Clients Can Feel Instantly
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: '1.8', fontSize: '15px' }}>
-                  Professional service, real results, and a team that's always available for you.
+                  Professional service, real results, and a team that&apos;s always available for you.
                 </p>
               </div>
             </div>
@@ -358,7 +359,7 @@ function App() {
                   </div>
                   <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)' }}>{r.date}</span>
                 </div>
-                <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.8', marginBottom: '25px', fontSize: '15px', fontStyle: 'italic' }}>"{r.text}"</p>
+                <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.8', marginBottom: '25px', fontSize: '15px', fontStyle: 'italic' }}>&ldquo;{r.text}&rdquo;</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                   <div style={{
                     width: '50px', height: '50px', borderRadius: '50%', background: r.color,
@@ -375,7 +376,7 @@ function App() {
             ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: '60px' }}>
-            <a href={WA_LINK} target="_blank" style={{
+            <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: '12px',
               background: '#10b981', color: '#fff', padding: '20px 50px', borderRadius: '12px',
               fontSize: '18px', fontWeight: '800', textDecoration: 'none',
@@ -394,11 +395,11 @@ function App() {
         backgroundSize: 'cover', backgroundPosition: 'center'
       }}>
         <img src={LOGO_URL} alt="Logo" style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', marginBottom: '30px', border: '3px solid rgba(255,255,255,0.4)', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }} />
-        <h2 style={{ fontSize: 'clamp(30px,5vw,60px)', fontWeight: '900', marginBottom: '20px' }}>Don't Overpay Your Bills.</h2>
-        <p style={{ fontSize: '22px', marginBottom: '50px', opacity: 0.9, maxWidth: '700px', margin: '0 auto 50px auto' }}>
+        <h2 style={{ fontSize: 'clamp(30px,5vw,60px)', fontWeight: '900', marginBottom: '20px' }}>Don&apos;t Overpay Your Bills.</h2>
+        <p style={{ fontSize: '22px', opacity: 0.9, maxWidth: '700px', margin: '0 auto 50px auto' }}>
           Our team is ready to provide your exclusive rate right now. One message is all it takes.
         </p>
-        <a href={WA_LINK} target="_blank" style={{
+        <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
           background: '#fff', color: '#056045', padding: '25px 60px', borderRadius: '15px',
           fontSize: '22px', fontWeight: '900', textDecoration: 'none', display: 'inline-block',
           boxShadow: '0 15px 50px rgba(0,0,0,0.3)', transition: '0.3s'
@@ -447,7 +448,7 @@ function App() {
       </footer>
 
       {/* FLOATING WHATSAPP */}
-      <a href={WA_LINK} target="_blank" style={{
+      <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
         position: 'fixed', bottom: '35px', right: '35px', zIndex: 2000,
         width: '70px', height: '70px', background: '#25d366', borderRadius: '50%',
         display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '34px',
@@ -474,6 +475,6 @@ function App() {
         * { margin: 0; padding: 0; box-sizing: border-box; }
         a { cursor: pointer; }
       `}</style>
-    </div>
+    </main>
   );
 }
