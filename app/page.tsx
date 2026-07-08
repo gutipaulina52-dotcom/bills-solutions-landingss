@@ -10,11 +10,19 @@ const LOGO_URL = 'https://cdn.abacus.ai/images/f11c3fe6-53c1-406a-bda1-d436aa609
 const HERO_BG = 'https://cdn.abacus.ai/images/d8091bb1-21a4-4318-90a3-79f28701c995.png';
 const ABOUT_IMG = 'https://cdn.abacus.ai/images/0450aa1b-0a8f-49dc-9596-054004ea6a67.png';
 const CTA_BG = 'https://cdn.abacus.ai/images/a9ff284b-f874-43e2-bc0f-645b1847ff6e.png';
+const GALLERY_IMAGES = [
+  'https://cdn.abacus.ai/images/1ccac92e-6ade-4155-a545-5ee4ab0c641a.png',
+  'https://cdn.abacus.ai/images/1ed5b67e-4942-4233-9c9a-ef217ef3b6f2.png',
+  'https://cdn.abacus.ai/images/547ef55f-e836-42de-815a-c32cc4847fbe.png',
+  'https://cdn.abacus.ai/images/4a14e0f6-ae5b-4362-bc07-44da905b4426.png',
+];
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [fillLevel, setFillLevel] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
+const [fillLevel, setFillLevel] = useState(0);
+const [scrolled, setScrolled] = useState(false);
+const [scrollY, setScrollY] = useState(0);
+const [activeGallery, setActiveGallery] = useState(0);
 
   useEffect(() => {
     // Water fill animation
@@ -30,11 +38,24 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+useEffect(() => {
+  const onScroll = () => {
+    setScrolled(window.scrollY > 50);
+    setScrollY(window.scrollY);
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+  return () => window.removeEventListener('scroll', onScroll);
+}, []);
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const interval = setInterval(() => {
+    setActiveGallery((prev) => (prev + 1) % GALLERY_IMAGES.length);
+  }, 3500);
+
+  return () => clearInterval(interval);
+}, []);
 
   const reviews = [
     { name: 'Maria G.', city: 'Miami, FL', stars: 5, text: 'I was about to get my electricity cut off. Bills Solutions Center paid my FPL bill in under 20 minutes. Absolutely incredible service. I recommend them to everyone in my family.', avatar: 'MG', color: '#ef4444', date: 'March 2025' },
