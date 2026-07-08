@@ -182,7 +182,7 @@ export default function Home() {
           </p>
           <a href={WA_LINK} target="_blank" style={{
             background: '#fff', color: '#056045', padding: '25px 60px', borderRadius: '15px',
-            fontSize: '22px', fontWeight: '900', textDecoration: 'none', inlineBlock: 'block',
+            fontSize: '22px', fontWeight: '900', textDecoration: 'none', display: 'inline-block',
             boxShadow: '0 15px 50px rgba(0,0,0,0.3)', transition: '0.3s'
           }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
              CHAT WITH US NOW
